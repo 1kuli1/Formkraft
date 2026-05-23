@@ -1,1 +1,314 @@
 
+<!DOCTYPE html> <!-- Talar om att dokumentet använder HTML5. -->
+<html lang="sv"> <!-- Startar HTML-dokumentet och anger svenska som språk. -->
+<head> <!-- Startar dokumentets huvud med metadata och stilar. -->
+<meta charset="UTF-8"> <!-- Anger teckenkodning så att svenska tecken visas rätt. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Gör sidan mobilvänlig. -->
+<title>AI Nivå 1 – DX-hjälp</title> <!-- Visar sidans titel i webbläsarfliken. -->
+
+<style> /* Startar CSS-delen för sidans utseende. */
+* { box-sizing: border-box; } /* Gör att padding och border räknas in i elementens storlek. */
+
+body { /* Styr hela sidans grundutseende. */
+    margin: 0; /* Tar bort webbläsarens standardmarginal. */
+    font-family: Arial, sans-serif; /* Anger ett lättläst standardtypsnitt. */
+    background: #f4f7fb; /* Ger sidan en ljus bakgrundsfärg. */
+    color: #1f2937; /* Ger all text en mörk och tydlig färg. */
+} /* Avslutar body-regeln. */
+
+header { /* Styr toppdelen på sidan. */
+    background: #17324d; /* Ger toppdelen en mörkblå bakgrund. */
+    color: white; /* Gör texten i toppdelen vit. */
+    padding: 24px 16px; /* Ger luft runt innehållet i toppdelen. */
+    text-align: center; /* Centrerar texten i toppdelen. */
+} /* Avslutar header-regeln. */
+
+header h1 { /* Styr rubriken i toppdelen. */
+    margin: 0 0 8px 0; /* Lägger till lite avstånd under rubriken. */
+    font-size: 30px; /* Gör rubriken tydligt större. */
+} /* Avslutar rubrikregeln. */
+
+header p { /* Styr brödtexten i toppdelen. */
+    margin: 0; /* Tar bort extra marginal. */
+    font-size: 16px; /* Gör texten lättläst. */
+} /* Avslutar paragrafregeln. */
+
+main { /* Styr huvudytan där rutorna ligger. */
+    max-width: 1100px; /* Begränsar sidans bredd så den blir lättare att läsa. */
+    margin: 0 auto; /* Centrerar huvudytan på sidan. */
+    padding: 24px 16px 40px 16px; /* Ger luft runt huvudytans innehåll. */
+} /* Avslutar main-regeln. */
+
+.grid { /* Skapar ett rutnät för korten. */
+    display: grid; /* Aktiverar grid-layout. */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Gör kolumner som anpassar sig efter skärmbredden. */
+    gap: 18px; /* Lägger mellanrum mellan rutorna. */
+} /* Avslutar grid-regeln. */
+
+.card { /* Styr varje innehållsruta. */
+    background: white; /* Ger rutorna vit bakgrund. */
+    border-radius: 16px; /* Rundar hörnen på rutorna. */
+    padding: 18px; /* Ger luft inuti rutorna. */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* Ger en mjuk skugga under rutorna. */
+    border: 1px solid #dbe5ef; /* Lägger en tunn kantlinje runt rutorna. */
+} /* Avslutar card-regeln. */
+
+.card h2 { /* Styr rubrikerna i rutorna. */
+    margin-top: 0; /* Tar bort övermarginal på rubriken. */
+    margin-bottom: 10px; /* Ger luft under rubriken. */
+    font-size: 22px; /* Gör rubriken tydlig. */
+} /* Avslutar h2-regeln. */
+
+.card p { /* Styr förklarande text i rutorna. */
+    margin-top: 0; /* Tar bort övermarginal. */
+    line-height: 1.5; /* Gör texten luftigare och lättare att läsa. */
+} /* Avslutar paragrafregeln för kort. */
+
+label { /* Styr etiketter till inmatningsfält. */
+    display: block; /* Gör varje etikett till ett block på egen rad. */
+    margin-top: 12px; /* Ger avstånd ovanför etiketten. */
+    margin-bottom: 6px; /* Ger avstånd under etiketten. */
+    font-weight: bold; /* Gör etiketten tydligare. */
+} /* Avslutar label-regeln. */
+
+input, select, textarea { /* Styr alla inmatningsfält. */
+    width: 100%; /* Gör fälten lika breda som sin container. */
+    padding: 12px; /* Ger luft inuti fälten. */
+    border: 1px solid #c6d3e1; /* Ger fälten en tunn ram. */
+    border-radius: 10px; /* Rundar hörnen på fälten. */
+    font-size: 15px; /* Gör texten i fälten tydlig. */
+    background: #fbfdff; /* Ger fälten en mycket ljus bakgrund. */
+} /* Avslutar fältregeln. */
+
+textarea { /* Styr textområden separat. */
+    min-height: 140px; /* Ger textfälten en bra grundhöjd. */
+    resize: vertical; /* Gör att användaren kan dra fältet större uppåt och nedåt. */
+} /* Avslutar textarea-regeln. */
+
+.button-row { /* Styr rader med knappar. */
+    display: flex; /* Lägger knapparna bredvid varandra. */
+    flex-wrap: wrap; /* Gör att knapparna radbryts på mindre skärmar. */
+    gap: 10px; /* Ger mellanrum mellan knapparna. */
+    margin-top: 16px; /* Ger luft ovanför knappraden. */
+} /* Avslutar button-row-regeln. */
+
+button { /* Styr alla knappar. */
+    border: none; /* Tar bort standardkant runt knapparna. */
+    border-radius: 10px; /* Rundar hörnen på knapparna. */
+    padding: 12px 16px; /* Ger luft inuti knapparna. */
+    font-size: 15px; /* Gör knapptexten lättläst. */
+    font-weight: bold; /* Gör knapptexten tydlig. */
+    cursor: pointer; /* Visar handpekare när musen hålls över knappen. */
+} /* Avslutar button-regeln. */
+
+.primary { /* Styr huvudknapparna. */
+    background: #1d4ed8; /* Ger knappen blå bakgrund. */
+    color: white; /* Gör texten vit. */
+} /* Avslutar primary-regeln. */
+
+.secondary { /* Styr sekundära knappar. */
+    background: #e5eef9; /* Ger knappen ljusblå bakgrund. */
+    color: #17324d; /* Gör texten mörkblå. */
+} /* Avslutar secondary-regeln. */
+
+button:hover { /* Styr knappar när musen hålls över dem. */
+    opacity: 0.92; /* Gör knappen lite mörkare vid hovring. */
+} /* Avslutar hover-regeln. */
+
+.output-box { /* Styr rutan där den färdiga prompten visas. */
+    margin-top: 14px; /* Ger luft ovanför rutan. */
+    padding: 12px; /* Ger luft inuti rutan. */
+    border-radius: 10px; /* Rundar hörnen. */
+    background: #f7fafc; /* Ger ljus bakgrund. */
+    border: 1px dashed #b8c7d8; /* Ger streckad ram som markerar informationsruta. */
+    white-space: pre-wrap; /* Bevarar radbrytningar i texten. */
+    min-height: 90px; /* Ger rutan en tydlig minsta höjd. */
+} /* Avslutar output-box-regeln. */
+
+.note { /* Styr små hjälprader under innehåll. */
+    font-size: 14px; /* Gör texten lite mindre. */
+    color: #4b5563; /* Ger texten en lugn grå färg. */
+    margin-top: 10px; /* Ger avstånd ovanför texten. */
+} /* Avslutar note-regeln. */
+
+footer { /* Styr sidfoten. */
+    text-align: center; /* Centrerar innehållet i sidfoten. */
+    padding: 18px; /* Ger luft i sidfoten. */
+    color: #4b5563; /* Ger texten en dämpad färg. */
+    font-size: 14px; /* Gör texten lite mindre än huvudtexten. */
+} /* Avslutar footer-regeln. */
+
+@media (max-width: 700px) { /* Anpassar utseendet för mindre skärmar. */
+    header h1 { font-size: 24px; } /* Gör huvudrubriken något mindre på mobil. */
+    .card h2 { font-size: 20px; } /* Gör kortrubrikerna något mindre på mobil. */
+} /* Avslutar mobilanpassningsregeln. */
+</style> <!-- Avslutar CSS-delen. -->
+</head> <!-- Avslutar dokumentets head-del. -->
+
+<body> <!-- Startar sidans synliga innehåll. -->
+<header> <!-- Startar sidans toppdel. -->
+    <h1>AI Nivå 1 – DX-hjälp</h1> <!-- Visar sidans huvudrubrik. -->
+    <p>Fyll i din fråga och skicka den vidare till fri AI.</p> <!-- Visar en kort instruktion under rubriken. -->
+</header> <!-- Avslutar toppdelen. -->
+
+<main> <!-- Startar huvudytan. -->
+    <div class="grid"> <!-- Startar rutnätet som håller de tre korten. -->
+
+        <section class="card"> <!-- Startar första kortet för stationsidentifiering. -->
+            <h2>Identifiera station</h2> <!-- Visar rubriken för första kortet. -->
+            <p>Fyll i det du hör och skapa en tydlig prompt till fri AI.</p> <!-- Förklarar vad kortet används till. -->
+
+            <label for="frequency">Frekvens</label> <!-- Visar etikett för frekvensfältet. -->
+            <input id="frequency" type="text" placeholder="Exempel: 1413 kHz"> <!-- Låter användaren skriva in frekvens. -->
+
+            <label for="utcTime">UTC</label> <!-- Visar etikett för UTC-fältet. -->
+            <input id="utcTime" type="text" placeholder="Exempel: 16:25 UTC"> <!-- Låter användaren skriva in eller få aktuell UTC-tid. -->
+
+            <label for="language">Språk</label> <!-- Visar etikett för språkfältet. -->
+            <input id="language" type="text" placeholder="Exempel: polska, ryska, engelska"> <!-- Låter användaren skriva in vilket språk som hörs. -->
+
+            <label for="heard">Vad hör du?</label> <!-- Visar etikett för observationsfältet. -->
+            <textarea id="heard" placeholder="Skriv ord, namn, ämnen, röster eller annat du hör..."></textarea> <!-- Låter användaren beskriva vad som hörs. -->
+
+            <div class="button-row"> <!-- Startar knapprad för första kortet. -->
+                <button class="secondary" type="button" onclick="fillUtcNow()">UTC nu</button> <!-- Fyller i aktuell UTC-tid i fältet. -->
+                <button class="primary" type="button" onclick="sendStationToAI()">Till fri AI</button> <!-- Skapar prompten, kopierar den och öppnar fri AI. -->
+            </div> <!-- Avslutar knappraden för första kortet. -->
+
+            <div id="stationPrompt" class="output-box"></div> <!-- Visar den färdiga prompten för stationsidentifiering. -->
+            <div class="note">Knappen kopierar prompten och öppnar ChatGPT i ny flik.</div> <!-- Förklarar vad knappen gör. -->
+        </section> <!-- Avslutar första kortet. -->
+
+        <section class="card"> <!-- Startar andra kortet för störningar och signaltyper. -->
+            <h2>Typ av störning</h2> <!-- Visar rubriken för andra kortet. -->
+            <p>Välj störning eller signaltyp och skicka frågan till fri AI.</p> <!-- Förklarar vad kortet används till. -->
+
+            <label for="interferenceType">Välj typ</label> <!-- Visar etikett för listan. -->
+            <select id="interferenceType"> <!-- Startar listan med olika alternativ. -->
+                <option value="">Välj här</option> <!-- Visar ett tomt startval. -->
+                <option value="Brus">Brus</option> <!-- Alternativ för brus. -->
+                <option value="Fading">Fading</option> <!-- Alternativ för fading. -->
+                <option value="Vissling">Vissling</option> <!-- Alternativ för vissling. -->
+                <option value="Brum">Brum</option> <!-- Alternativ för brum. -->
+                <option value="Klickljud">Klickljud</option> <!-- Alternativ för klickljud. -->
+                <option value="Surr">Surr</option> <!-- Alternativ för surr. -->
+                <option value="Distorsion">Distorsion</option> <!-- Alternativ för distorsion. -->
+                <option value="Överstyrning">Överstyrning</option> <!-- Alternativ för överstyrning. -->
+                <option value="Interferens från annan station">Interferens från annan station</option> <!-- Alternativ för station som stör annan station. -->
+                <option value="Ingen signal">Ingen signal</option> <!-- Alternativ för att ingen signal hörs. -->
+                <option value="Svag signal">Svag signal</option> <!-- Alternativ för svag signal. -->
+                <option value="Stark signal">Stark signal</option> <!-- Alternativ för stark signal. -->
+            </select> <!-- Avslutar listan. -->
+
+            <label for="interferenceDescription">Beskrivning</label> <!-- Visar etikett för beskrivningsfältet. -->
+            <textarea id="interferenceDescription" placeholder="Beskriv hur det låter eller vad du ser..."></textarea> <!-- Låter användaren beskriva störningen. -->
+
+            <div class="button-row"> <!-- Startar knappraden för andra kortet. -->
+                <button class="primary" type="button" onclick="sendInterferenceToAI()">Till fri AI</button> <!-- Skapar prompten för störningen och öppnar fri AI. -->
+            </div> <!-- Avslutar knappraden för andra kortet. -->
+
+            <div id="interferencePrompt" class="output-box"></div> <!-- Visar den färdiga prompten för störningen. -->
+        </section> <!-- Avslutar andra kortet. -->
+
+        <section class="card"> <!-- Startar tredje kortet för egen fråga. -->
+            <h2>Egen fråga</h2> <!-- Visar rubriken för tredje kortet. -->
+            <p>Skriv valfri DX-fråga och skicka den till fri AI.</p> <!-- Förklarar vad kortet används till. -->
+
+            <label for="ownQuestion">Din fråga</label> <!-- Visar etikett för frågefältet. -->
+            <textarea id="ownQuestion" placeholder="Exempel: Hur vet jag om det är fading eller bara svag signal?"></textarea> <!-- Låter användaren skriva en fri fråga. -->
+
+            <div class="button-row"> <!-- Startar knappraden för tredje kortet. -->
+                <button class="primary" type="button" onclick="sendOwnQuestionToAI()">Till fri AI</button> <!-- Skapar prompten för egen fråga och öppnar fri AI. -->
+            </div> <!-- Avslutar knappraden för tredje kortet. -->
+
+            <div id="ownQuestionPrompt" class="output-box"></div> <!-- Visar den färdiga prompten för egen fråga. -->
+        </section> <!-- Avslutar tredje kortet. -->
+
+    </div> <!-- Avslutar rutnätet. -->
+</main> <!-- Avslutar huvudytan. -->
+
+<footer> <!-- Startar sidfoten. -->
+    DX Academy – enkel AI-hjälp för nybörjare. <!-- Visar en kort text i sidfoten. -->
+</footer> <!-- Avslutar sidfoten. -->
+
+<script> /* Startar JavaScript-delen för sidans funktioner. */
+function fillUtcNow() { /* Skapar en funktion som fyller i aktuell UTC-tid. */
+    const now = new Date(); /* Hämtar aktuell tid från datorn. */
+    const hours = String(now.getUTCHours()).padStart(2, "0"); /* Hämtar UTC-timmar och fyller ut med nolla vid behov. */
+    const minutes = String(now.getUTCMinutes()).padStart(2, "0"); /* Hämtar UTC-minuter och fyller ut med nolla vid behov. */
+    document.getElementById("utcTime").value = `${hours}:${minutes} UTC`; /* Skriver in UTC-tiden i fältet för UTC. */
+} /* Avslutar funktionen fillUtcNow. */
+
+function copyText(text) { /* Skapar en funktion som försöker kopiera text till urklipp. */
+    if (navigator.clipboard && window.isSecureContext) { /* Kontrollerar om modern kopiering fungerar i säker miljö. */
+        return navigator.clipboard.writeText(text); /* Kopierar texten med clipboard-API. */
+    } /* Avslutar kontrollen för modern kopiering. */
+
+    return new Promise(function(resolve, reject) { /* Skapar en reservlösning för lokal fil eller äldre lägen. */
+        const helper = document.createElement("textarea"); /* Skapar ett tillfälligt textfält i bakgrunden. */
+        helper.value = text; /* Lägger in texten som ska kopieras i hjälpfältet. */
+        helper.style.position = "fixed"; /* Gör att hjälpfältet inte stör layouten. */
+        helper.style.left = "-9999px"; /* Flyttar hjälpfältet långt utanför skärmen. */
+        document.body.appendChild(helper); /* Lägger till hjälpfältet i sidan. */
+        helper.focus(); /* Markerar hjälpfältet. */
+        helper.select(); /* Markerar texten i hjälpfältet. */
+
+        try { /* Försöker kopiera texten med den äldre metoden. */
+            document.execCommand("copy"); /* Kör kommandot som kopierar markerad text. */
+            document.body.removeChild(helper); /* Tar bort hjälpfältet när kopieringen är klar. */
+            resolve(); /* Säger att kopieringen lyckades. */
+        } catch (error) { /* Fångar eventuella fel vid kopieringen. */
+            document.body.removeChild(helper); /* Tar bort hjälpfältet även om något går fel. */
+            reject(error); /* Skickar vidare felet. */
+        } /* Avslutar felhanteringen. */
+    }); /* Avslutar reservlösningen. */
+} /* Avslutar funktionen copyText. */
+
+function openFreeAI(promptText) { /* Skapar en funktion som kopierar prompten och öppnar fri AI. */
+    copyText(promptText).then(function() { /* Försöker först kopiera prompten. */
+        alert("Prompten är kopierad. Klistra in den i fri AI."); /* Visar ett meddelande när kopieringen lyckades. */
+        window.open("https://chat.openai.com/", "_blank"); /* Öppnar ChatGPT i en ny flik. */
+    }).catch(function() { /* Körs om kopieringen inte lyckades. */
+        alert("Kunde inte kopiera automatiskt. Markera texten i rutan och kopiera själv."); /* Visar hjälpmeddelande om kopieringen misslyckas. */
+        window.open("https://chat.openai.com/", "_blank"); /* Öppnar ändå ChatGPT i en ny flik. */
+    }); /* Avslutar kopieringskedjan. */
+} /* Avslutar funktionen openFreeAI. */
+
+function sendStationToAI() { /* Skapar funktionen för stationsidentifiering. */
+    const frequency = document.getElementById("frequency").value.trim(); /* Hämtar frekvensen från formuläret. */
+    const utcTime = document.getElementById("utcTime").value.trim(); /* Hämtar UTC-tiden från formuläret. */
+    const language = document.getElementById("language").value.trim(); /* Hämtar språket från formuläret. */
+    const heard = document.getElementById("heard").value.trim(); /* Hämtar observationerna från formuläret. */
+
+    const prompt = `Du är en pedagogisk DX-expert.\n\nFörklara enkelt.\nVar tydlig.\nAnge källa och länk om möjligt.\nSäg till om du är osäker.\n\nIdentifiera station:\nFrekvens: ${frequency || "okänd"}\nTid: ${utcTime || "okänd"}\nSpråk: ${language || "okänt"}\nObservationer: ${heard || "inga observationer angivna"}`; /* Bygger den färdiga prompten utifrån användarens uppgifter. */
+
+    document.getElementById("stationPrompt").textContent = prompt; /* Visar prompten i rutan på sidan. */
+    openFreeAI(prompt); /* Kopierar prompten och öppnar fri AI. */
+} /* Avslutar funktionen sendStationToAI. */
+
+function sendInterferenceToAI() { /* Skapar funktionen för störningar och signaltyper. */
+    const type = document.getElementById("interferenceType").value.trim(); /* Hämtar vald typ från listan. */
+    const description = document.getElementById("interferenceDescription").value.trim(); /* Hämtar användarens beskrivning från formuläret. */
+
+    const prompt = `Du är en pedagogisk DX-expert.\n\nFörklara enkelt.\nVar tydlig.\nAnge källa och länk om möjligt.\nSäg till om du är osäker.\n\nFörklara signal:\nTyp: ${type || "okänd"}\nBeskrivning: ${description || ""}`; /* Bygger den färdiga prompten för vald störning eller signaltyp. */
+
+    document.getElementById("interferencePrompt").textContent = prompt; /* Visar prompten i rutan på sidan. */
+    openFreeAI(prompt); /* Kopierar prompten och öppnar fri AI. */
+} /* Avslutar funktionen sendInterferenceToAI. */
+
+function sendOwnQuestionToAI() { /* Skapar funktionen för fri fråga. */
+    const question = document.getElementById("ownQuestion").value.trim(); /* Hämtar frågan från formuläret. */
+    const prompt = question || "Skriv din fråga först."; /* Sätter prompten till frågan eller ett meddelande om fältet är tomt. */
+
+    document.getElementById("ownQuestionPrompt").textContent = prompt; /* Visar prompten i rutan på sidan. */
+
+    if (!question) { /* Kontrollerar om användaren har lämnat fältet tomt. */
+        alert("Skriv en fråga först."); /* Visar ett meddelande om frågan saknas. */
+        return; /* Avbryter funktionen om inget är ifyllt. */
+    } /* Avslutar kontrollen för tom fråga. */
+
+    openFreeAI(prompt); /* Kopierar frågan och öppnar fri AI. */
+} /* Avslutar funktionen sendOwnQuestionToAI. */
+</script> <!-- Avslutar JavaScript-delen. -->
+</body> <!-- Avslutar sidans synliga innehåll. -->
+</html> <!-- Avslutar hela HTML-dokumentet. -->

@@ -1,134 +1,146 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Formkraft</title>
 
   <style>
+
     /* Grundinställningar */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0f1a;
-      color: white;
+    body{
+      margin:0;
+      padding:0;
+      font-family:Arial, sans-serif;
+      background:#0b0f1a;
+      color:white;
     }
 
     /* Header */
-    header {
-      background: #111827;
-      padding: 40px 20px;
-      text-align: center;
-      border-bottom: 2px solid #eab308;
+    header{
+      background:#111827;
+      padding:40px 20px;
+      text-align:center;
+      border-bottom:2px solid #eab308;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 3rem;
-      color: #eab308;
+    header h1{
+      margin:0;
+      font-size:3rem;
+      color:#eab308;
     }
 
-    header p {
-      margin-top: 15px;
-      font-size: 1.1rem;
-      color: #d1d5db;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
+    header p{
+      margin-top:15px;
+      font-size:1.1rem;
+      color:#d1d5db;
+      max-width:700px;
+      margin-left:auto;
+      margin-right:auto;
+      line-height:1.6;
     }
 
-    /* Verktygssektion */
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 40px 20px;
+    /* Innehåll */
+    .container{
+      max-width:1200px;
+      margin:auto;
+      padding:40px 20px;
     }
 
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: #eab308;
-      text-align: center;
+    /* Rubrik */
+    .section-title{
+      font-size:2rem;
+      margin-bottom:30px;
+      color:#eab308;
+      text-align:center;
     }
 
-    /* Kort-grid */
-    .tool-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
+    /* Grid */
+    .tool-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:25px;
     }
 
-    /* Verktygskort */
-    .tool-card {
-      background: #111827;
-      border: 1px solid #1f2937;
-      border-radius: 18px;
-      padding: 25px;
-      transition: 0.3s;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    /* Kort */
+    .tool-card{
+      background:#111827;
+      border:1px solid #1f2937;
+      border-radius:18px;
+      padding:25px;
+      transition:0.3s;
+      box-shadow:0 0 10px rgba(0,0,0,0.3);
     }
 
-    .tool-card:hover {
-      transform: translateY(-5px);
-      border-color: #eab308;
-      box-shadow: 0 0 20px rgba(234,179,8,0.3);
+    .tool-card:hover{
+      transform:translateY(-5px);
+      border-color:#eab308;
+      box-shadow:0 0 20px rgba(234,179,8,0.3);
     }
 
-    .tool-card h2 {
-      margin-top: 0;
-      color: #eab308;
+    .tool-card h2{
+      margin-top:0;
+      color:#eab308;
     }
 
-    .tool-card p {
-      color: #d1d5db;
-      line-height: 1.5;
-      min-height: 90px;
+    .tool-card p{
+      color:#d1d5db;
+      line-height:1.5;
+      min-height:90px;
     }
 
-    /* Knapp */
-    .btn {
-      display: inline-block;
-      background: #eab308;
-      color: black;
-      text-decoration: none;
-      padding: 12px 22px;
-      border-radius: 10px;
-      font-weight: bold;
-      transition: 0.3s;
+    /* Knappar */
+    .btn{
+      display:inline-block;
+      width:100%;
+      text-align:center;
+      background:#eab308;
+      color:black;
+      text-decoration:none;
+      padding:12px 22px;
+      border-radius:10px;
+      font-weight:bold;
+      transition:0.3s;
     }
 
-    .btn:hover {
-      background: #facc15;
+    .btn:hover{
+      background:#facc15;
     }
 
     /* Footer */
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #9ca3af;
-      border-top: 1px solid #1f2937;
-      margin-top: 40px;
+    footer{
+      text-align:center;
+      padding:30px 20px;
+      color:#9ca3af;
+      border-top:1px solid #1f2937;
+      margin-top:40px;
     }
 
-    /* Mobilanpassning */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2.2rem;
+    /* Mobil */
+    @media (max-width:600px){
+
+      header h1{
+        font-size:2.2rem;
       }
 
-      .section-title {
-        font-size: 1.6rem;
+      .section-title{
+        font-size:1.6rem;
       }
+
     }
+
   </style>
+
 </head>
 
 <body>
 
   <!-- Header -->
   <header>
+
     <h1>Formkraft</h1>
 
     <p>
@@ -136,6 +148,7 @@
       marknadsförsäljare, föreningar och kreatörer.
       Byggt för människor som vill komma vidare snabbt.
     </p>
+
   </header>
 
   <!-- Innehåll -->
@@ -147,6 +160,7 @@
 
       <!-- Skyltgenerator -->
       <div class="tool-card">
+
         <h2>Skyltgenerator</h2>
 
         <p>
@@ -154,13 +168,15 @@
           butiker, mässor och försäljning direkt i webbläsaren.
         </p>
 
-        <a class="btn" href="sv/marknad/företag/skyltgenerator/">
-  Öppna verktyg
-</a>
+        <a class="btn" href="sv/marknad/företag/skyltgenerator/index.html">
+          Öppna verktyg
+        </a>
+
       </div>
 
-      <!-- Kommande -->
+      <!-- Kvittomall -->
       <div class="tool-card">
+
         <h2>Kvittomall</h2>
 
         <p>
@@ -168,15 +184,15 @@
           och småföretagare.
         </p>
 
-        <a class="btn" href="
-sv/marknad/företag/kvittomall/index.html
-"> Öppna verktyg
-      
+        <a class="btn" href="sv/marknad/företag/kvittomall/index.html">
+          Öppna verktyg
         </a>
+
       </div>
 
-      <!-- Kommande -->
+      <!-- QR Visitkort -->
       <div class="tool-card">
+
         <h2>QR Visitkort</h2>
 
         <p>
@@ -185,8 +201,9 @@ sv/marknad/företag/kvittomall/index.html
         </p>
 
         <a class="btn" href="sv/marknad/företag/qrvisitkort/index.html">
-        Öppna verktyg
+          Öppna verktyg
         </a>
+
       </div>
 
     </div>

@@ -1,163 +1,200 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formkraft</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formkraft</title>
 
-    <style>
-        /* Grundinställningar för hela sidan */
-        body {
-            margin: 0; /* Tar bort standardmarginal */
-            padding: 0; /* Tar bort standardpadding */
-            font-family: Arial, sans-serif; /* Enkel och tydlig font */
-            background-color: #0f172a; /* Mörk bakgrund */
-            color: white; /* Vit text */
-            text-align: center; /* Centrerar text */
-        }
+  <style>
+    /* Grundinställningar */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0f1a;
+      color: white;
+    }
 
-        /* Huvudsektionen */
-        .hero {
-            padding: 80px 20px; /* Luft runt innehållet */
-        }
+    /* Header */
+    header {
+      background: #111827;
+      padding: 40px 20px;
+      text-align: center;
+      border-bottom: 2px solid #eab308;
+    }
 
-        /* Logotyp / rubrik */
-        h1 {
-            font-size: 60px; /* Stor rubrik */
-            margin-bottom: 10px; /* Avstånd nedåt */
-            color: #facc15; /* Gul färg */
-        }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      color: #eab308;
+    }
 
-        /* Undertitel */
-        .subtitle {
-            font-size: 22px; /* Lite mindre text */
-            max-width: 700px; /* Begränsar bredd */
-            margin: auto; /* Centrerar */
-            line-height: 1.6; /* Luft mellan rader */
-            color: #d1d5db; /* Ljusgrå text */
-        }
+    header p {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: #d1d5db;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
 
-        /* Sektion för knappar */
-        .buttons {
-            margin-top: 40px; /* Avstånd uppåt */
-        }
+    /* Verktygssektion */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
 
-        /* Knappar */
-        .btn {
-            display: inline-block; /* Gör länkar till block */
-            background-color: #facc15; /* Gul bakgrund */
-            color: black; /* Svart text */
-            text-decoration: none; /* Tar bort understrykning */
-            padding: 15px 30px; /* Storlek på knappen */
-            margin: 10px; /* Avstånd mellan knappar */
-            border-radius: 12px; /* Rundade hörn */
-            font-size: 18px; /* Textstorlek */
-            font-weight: bold; /* Fet text */
-            transition: 0.3s; /* Mjuk hovereffekt */
-        }
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #eab308;
+      text-align: center;
+    }
 
-        /* Hovereffekt */
-        .btn:hover {
-            background-color: #fde047; /* Ljusare gul */
-            transform: scale(1.05); /* Växer lite */
-        }
+    /* Kort-grid */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
 
-        /* Kortsektion */
-        .tools {
-            display: flex; /* Flexlayout */
-            flex-wrap: wrap; /* Bryter rad på mobil */
-            justify-content: center; /* Centrerar kort */
-            gap: 20px; /* Mellanrum */
-            padding: 40px 20px; /* Luft runt */
-        }
+    /* Verktygskort */
+    .tool-card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 18px;
+      padding: 25px;
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
 
-        /* Verktygskort */
-        .card {
-            background-color: #111827; /* Mörkare kort */
-            padding: 25px; /* Luft inuti kort */
-            width: 280px; /* Bredd */
-            border-radius: 16px; /* Rundade hörn */
-            box-shadow: 0 0 10px rgba(0,0,0,0.3); /* Skugga */
-        }
+    .tool-card:hover {
+      transform: translateY(-5px);
+      border-color: #eab308;
+      box-shadow: 0 0 20px rgba(234,179,8,0.3);
+    }
 
-        /* Rubriker i kort */
-        .card h2 {
-            color: #facc15; /* Gul rubrik */
-        }
+    .tool-card h2 {
+      margin-top: 0;
+      color: #eab308;
+    }
 
-        /* Footer */
-        footer {
-            padding: 30px;
-            color: #9ca3af;
-            font-size: 14px;
-        }
-    </style>
+    .tool-card p {
+      color: #d1d5db;
+      line-height: 1.5;
+      min-height: 90px;
+    }
+
+    /* Knapp */
+    .btn {
+      display: inline-block;
+      background: #eab308;
+      color: black;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #facc15;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #9ca3af;
+      border-top: 1px solid #1f2937;
+      margin-top: 40px;
+    }
+
+    /* Mobilanpassning */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- Huvudsektion -->
-    <section class="hero">
+  <!-- Header -->
+  <header>
+    <h1>Formkraft</h1>
 
-        <!-- Stor rubrik -->
-        <h1>Formkraft</h1>
+    <p>
+      Smarta och enkla verktyg för småföretagare,
+      marknadsförsäljare, föreningar och kreatörer.
+      Byggt för människor som vill komma vidare snabbt.
+    </p>
+  </header>
 
-        <!-- Kort beskrivning -->
-        <p class="subtitle">
-            Smarta och praktiska HTML-verktyg för småföretagare,
-            kreatörer och vardagsanvändare.
+  <!-- Innehåll -->
+  <div class="container">
+
+    <h2 class="section-title">Verktyg</h2>
+
+    <div class="tool-grid">
+
+      <!-- Skyltgenerator -->
+      <div class="tool-card">
+        <h2>Skyltgenerator</h2>
+
+        <p>
+          Skapa snygga skyltar för marknader,
+          butiker, mässor och försäljning direkt i webbläsaren.
         </p>
 
-        <!-- Knappar -->
-        <div class="buttons">
+        <a class="btn" href="sv/marknad/skyltgenerator/">
+          Öppna verktyg
+        </a>
+      </div>
 
-            <!-- GitHub-knapp -->
-            <a class="btn" href="https://github.com/" target="_blank">
-                GitHub
-            </a>
+      <!-- Kommande -->
+      <div class="tool-card">
+        <h2>Kvittomall</h2>
 
-            <!-- Kontaktknapp -->
-            <a class="btn" href="mailto:kontakt@formkraft.se">
-                Kontakta oss
-            </a>
+        <p>
+          Enkel kvittohantering för marknadsförsäljare
+          och småföretagare.
+        </p>
 
-        </div>
+        <a class="btn" href="#">
+          Kommer snart
+        </a>
+      </div>
 
-    </section>
+      <!-- Kommande -->
+      <div class="tool-card">
+        <h2>QR Visitkort</h2>
 
-    <!-- Verktygssektion -->
-    <section class="tools">
+        <p>
+          Skapa moderna visitkort med QR-kod
+          för företag, hantverkare och kreatörer.
+        </p>
 
-        <!-- Kort 1 -->
-        <div class="card">
-            <h2>Skyltgenerator</h2>
-            <p>
-                Skapa snygga skyltar snabbt och enkelt direkt i webbläsaren.
-            </p>
-        </div>
+        <a class="btn" href="#">
+          Kommer snart
+        </a>
+      </div>
 
-        <!-- Kort 2 -->
-        <div class="card">
-            <h2>QR-Visitkort</h2>
-            <p>
-                Digitala visitkort med QR-kod för företag och mässor.
-            </p>
-        </div>
+    </div>
 
-        <!-- Kort 3 -->
-        <div class="card">
-            <h2>Kvittomall</h2>
-            <p>
-                Enkla kvitton för marknader, småföretag och försäljning.
-            </p>
-        </div>
+  </div>
 
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        © 2026 Formkraft • Enkla idéer. Praktiska lösningar.
-    </footer>
+  <!-- Footer -->
+  <footer>
+    © 2026 Formkraft — Smarta verktyg för verkliga behov
+  </footer>
 
 </body>
 </html>

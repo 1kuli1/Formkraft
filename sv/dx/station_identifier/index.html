@@ -1,1 +1,182 @@
+<!DOCTYPE html> <!-- Talar om att dokumentet använder HTML5 -->
+<html lang="sv"> <!-- Startar HTML-dokumentet och anger svenska som språk -->
+<head> <!-- Börjar dokumentets huvuddel -->
+<meta charset="UTF-8"> <!-- Anger teckenkodning så att svenska tecken visas rätt -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Gör sidan mobilvänlig -->
+<title>Identifiera station steg för steg</title> <!-- Sätter titeln i webbläsarfliken -->
+
+<style> /* Startar CSS för sidans utseende */
+body { /* Väljer hela sidan */
+    font-family: Arial, sans-serif; /* Anger typsnitt */
+    background: #0b0f1a; /* Sätter mörk bakgrund */
+    color: #ffffff; /* Sätter vit textfärg */
+    margin: 0; /* Tar bort standardmarginal */
+    padding: 24px; /* Lägger luft runt innehållet */
+} /* Avslutar body-regeln */
+
+.container { /* Väljer huvudrutan */
+    max-width: 760px; /* Begränsar bredden */
+    margin: 0 auto; /* Centrerar rutan */
+    background: #111827; /* Sätter mörk panelbakgrund */
+    border-radius: 16px; /* Rundar hörnen */
+    padding: 24px; /* Lägger inre luft */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35); /* Ger mjuk skugga */
+} /* Avslutar container-regeln */
+
+h1 { /* Väljer huvudrubriken */
+    margin-top: 0; /* Tar bort extra luft ovanför rubriken */
+    font-size: 28px; /* Sätter rubrikstorlek */
+} /* Avslutar h1-regeln */
+
+p.intro { /* Väljer introduktionstexten */
+    color: #d1d5db; /* Sätter ljusgrå text */
+    margin-bottom: 24px; /* Lägger luft under texten */
+} /* Avslutar intro-regeln */
+
+.form-group { /* Väljer varje formulärblock */
+    margin-bottom: 16px; /* Lägger luft mellan fälten */
+} /* Avslutar form-group-regeln */
+
+label { /* Väljer etiketter */
+    display: block; /* Gör att etiketten ligger på egen rad */
+    margin-bottom: 6px; /* Lägger lite luft under etiketten */
+    font-weight: bold; /* Gör etiketten fet */
+} /* Avslutar label-regeln */
+
+input, select, textarea { /* Väljer alla inmatningsfält */
+    width: 100%; /* Gör att fältet fyller hela bredden */
+    padding: 12px; /* Lägger inre luft i fältet */
+    border-radius: 10px; /* Rundar hörnen */
+    border: 1px solid #374151; /* Sätter diskret kantlinje */
+    background: #1f2937; /* Sätter mörk bakgrund i fältet */
+    color: #ffffff; /* Sätter vit text */
+    box-sizing: border-box; /* Gör att padding räknas in i bredden */
+} /* Avslutar input-regeln */
+
+textarea { /* Väljer textområdet */
+    min-height: 110px; /* Ger en lagom höjd */
+    resize: vertical; /* Tillåter bara vertikal storleksändring */
+} /* Avslutar textarea-regeln */
+
+.time-row { /* Väljer raden för UTC-fält och knapp */
+    display: flex; /* Lägger innehållet bredvid varandra */
+    gap: 10px; /* Lägger mellanrum mellan elementen */
+    align-items: end; /* Justerar elementen mot nederkanten */
+} /* Avslutar time-row-regeln */
+
+.time-row input { /* Väljer tidsfältet i tidsraden */
+    flex: 1; /* Gör att tidsfältet tar största delen av bredden */
+} /* Avslutar time-row input-regeln */
+
+button { /* Väljer knappar */
+    background: #d4a017; /* Sätter mörkgul knappfärg */
+    color: #111827; /* Sätter mörk text på knappen */
+    border: none; /* Tar bort standardkant */
+    border-radius: 10px; /* Rundar hörnen */
+    padding: 12px 16px; /* Ger knappen lagom storlek */
+    font-weight: bold; /* Gör knapptexten fet */
+    cursor: pointer; /* Visar handpekare */
+} /* Avslutar button-regeln */
+
+button:hover { /* Väljer knapp vid hovring */
+    filter: brightness(1.05); /* Gör knappen lite ljusare */
+} /* Avslutar hover-regeln */
+
+.actions { /* Väljer raden med åtgärdsknappar */
+    margin-top: 20px; /* Lägger luft ovanför knapparna */
+} /* Avslutar actions-regeln */
+
+#promptPreview { /* Väljer förhandsvisningsrutan */
+    white-space: pre-wrap; /* Bevarar radbrytningar */
+    background: #0f172a; /* Sätter mörk bakgrund */
+    border: 1px solid #374151; /* Sätter ram */
+    border-radius: 12px; /* Rundar hörnen */
+    padding: 16px; /* Lägger inre luft */
+    margin-top: 20px; /* Lägger luft ovanför rutan */
+    color: #e5e7eb; /* Sätter ljus text */
+} /* Avslutar promptPreview-regeln */
+</style> <!-- Avslutar CSS -->
+</head> <!-- Avslutar head -->
+<body> <!-- Startar sidans synliga innehåll -->
+<div class="container"> <!-- Startar huvudrutan -->
+    <h1>Identifiera station steg för steg</h1> <!-- Visar sidans rubrik -->
+    <p class="intro">Fyll i det du hör, så byggs frågan upp automatiskt.</p> <!-- Visar kort instruktion -->
+
+    <div class="form-group"> <!-- Startar block för frekvens -->
+        <label for="frekvens">Frekvens</label> <!-- Etikett för frekvensfältet -->
+        <input id="frekvens" type="text" placeholder="Exempel: 7274.790 kHz"> <!-- Fält för frekvens -->
+    </div> <!-- Avslutar block för frekvens -->
+
+    <div class="form-group"> <!-- Startar block för UTC -->
+        <label for="utcTid">UTC</label> <!-- Etikett för UTC-fältet -->
+        <div class="time-row"> <!-- Startar raden för UTC och knapp -->
+            <input id="utcTid" type="text" placeholder="Exempel: 21:43 UTC"> <!-- Fält för exakt UTC-tid -->
+            <button type="button" id="utcKnapp">Hämta exakt UTC</button> <!-- Knapp som fyller i exakt UTC -->
+        </div> <!-- Avslutar raden för UTC och knapp -->
+    </div> <!-- Avslutar block för UTC -->
+
+    <div class="form-group"> <!-- Startar block för signal -->
+        <label for="signal">Signal</label> <!-- Etikett för signalfältet -->
+        <select id="signal"> <!-- Startar lista för signalstyrka -->
+            <option value="">Välj signal</option> <!-- Standardval -->
+            <option>Mycket svag</option> <!-- Val 1 -->
+            <option>Svag</option> <!-- Val 2 -->
+            <option>Medel</option> <!-- Val 3 -->
+            <option>Stark</option> <!-- Val 4 -->
+            <option>Mycket stark</option> <!-- Val 5 -->
+        </select> <!-- Avslutar lista för signalstyrka -->
+    </div> <!-- Avslutar block för signal -->
+
+    <div class="form-group"> <!-- Startar block för språk -->
+        <label for="sprak">Språk / röster</label> <!-- Etikett för språkfältet -->
+        <input id="sprak" type="text" placeholder="Exempel: asiatisk man och kvinna"> <!-- Fält för språk/röster -->
+    </div> <!-- Avslutar block för språk -->
+
+    <div class="form-group"> <!-- Startar block för mottagare -->
+        <label for="mottagare">Mottagare / plats</label> <!-- Etikett för mottagarfältet -->
+        <input id="mottagare" type="text" placeholder="Exempel: http://vhj.psokotka.com:55001/"> <!-- Fält för mottagare/plats -->
+    </div> <!-- Avslutar block för mottagare -->
+
+    <div class="actions"> <!-- Startar block för knapp -->
+        <button type="button" id="byggFraga">Bygg fråga</button> <!-- Knapp som bygger frågan -->
+    </div> <!-- Avslutar block för knapp -->
+
+    <div id="promptPreview">Här visas frågan.</div> <!-- Ruta där frågan visas -->
+</div> <!-- Avslutar huvudrutan -->
+
+<script> /* Startar JavaScript */
+const frekvens = document.getElementById("frekvens"); /* Hämtar frekvensfältet */
+const utcTid = document.getElementById("utcTid"); /* Hämtar UTC-fältet */
+const signal = document.getElementById("signal"); /* Hämtar signallistan */
+const sprak = document.getElementById("sprak"); /* Hämtar språkfältet */
+const mottagare = document.getElementById("mottagare"); /* Hämtar mottagarfältet */
+const utcKnapp = document.getElementById("utcKnapp"); /* Hämtar UTC-knappen */
+const byggFraga = document.getElementById("byggFraga"); /* Hämtar knappen för att bygga fråga */
+const promptPreview = document.getElementById("promptPreview"); /* Hämtar rutan där frågan ska visas */
+
+function hamtaExaktUTC() { /* Startar funktion som hämtar exakt UTC */
+    const nu = new Date(); /* Hämtar nuvarande tid */
+    const timmar = String(nu.getUTCHours()).padStart(2, "0"); /* Hämtar UTC-timmar med två siffror */
+    const minuter = String(nu.getUTCMinutes()).padStart(2, "0"); /* Hämtar UTC-minuter med två siffror */
+    const sekunder = String(nu.getUTCSeconds()).padStart(2, "0"); /* Hämtar UTC-sekunder med två siffror */
+    utcTid.value = `${timmar}:${minuter}:${sekunder} UTC`; /* Skriver in exakt UTC i fältet */
+} /* Avslutar funktionen för exakt UTC */
+
+function byggText() { /* Startar funktion som bygger frågetexten */
+    const text = `Jag hör en station:
+Frekvens: ${frekvens.value}
+Tid: ${utcTid.value}
+Signal: ${signal.value}
+Språk: ${sprak.value}
+Mottagare/plats: ${mottagare.value}
+
+Kan du hjälpa mig identifiera stationen steg för steg?`; /* Bygger frågan av fälten */
+    promptPreview.textContent = text; /* Visar frågan i rutan */
+} /* Avslutar funktionen som bygger texten */
+
+utcKnapp.addEventListener("click", hamtaExaktUTC); /* Kör UTC-funktionen när knappen klickas */
+byggFraga.addEventListener("click", byggText); /* Bygger frågan när knappen klickas */
+</script> <!-- Avslutar JavaScript -->
+</body> <!-- Avslutar body -->
+</html> <!-- Avslutar HTML-dokumentet -->
 

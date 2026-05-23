@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formkraft</title>
+
+    <style>
+        /* Grundinställningar för hela sidan */
+        body {
+            margin: 0; /* Tar bort standardmarginal */
+            padding: 0; /* Tar bort standardpadding */
+            font-family: Arial, sans-serif; /* Enkel och tydlig font */
+            background-color: #0f172a; /* Mörk bakgrund */
+            color: white; /* Vit text */
+            text-align: center; /* Centrerar text */
+        }
+
+        /* Huvudsektionen */
+        .hero {
+            padding: 80px 20px; /* Luft runt innehållet */
+        }
+
+        /* Logotyp / rubrik */
+        h1 {
+            font-size: 60px; /* Stor rubrik */
+            margin-bottom: 10px; /* Avstånd nedåt */
+            color: #facc15; /* Gul färg */
+        }
+
+        /* Undertitel */
+        .subtitle {
+            font-size: 22px; /* Lite mindre text */
+            max-width: 700px; /* Begränsar bredd */
+            margin: auto; /* Centrerar */
+            line-height: 1.6; /* Luft mellan rader */
+            color: #d1d5db; /* Ljusgrå text */
+        }
+
+        /* Sektion för knappar */
+        .buttons {
+            margin-top: 40px; /* Avstånd uppåt */
+        }
+
+        /* Knappar */
+        .btn {
+            display: inline-block; /* Gör länkar till block */
+            background-color: #facc15; /* Gul bakgrund */
+            color: black; /* Svart text */
+            text-decoration: none; /* Tar bort understrykning */
+            padding: 15px 30px; /* Storlek på knappen */
+            margin: 10px; /* Avstånd mellan knappar */
+            border-radius: 12px; /* Rundade hörn */
+            font-size: 18px; /* Textstorlek */
+            font-weight: bold; /* Fet text */
+            transition: 0.3s; /* Mjuk hovereffekt */
+        }
+
+        /* Hovereffekt */
+        .btn:hover {
+            background-color: #fde047; /* Ljusare gul */
+            transform: scale(1.05); /* Växer lite */
+        }
+
+        /* Kortsektion */
+        .tools {
+            display: flex; /* Flexlayout */
+            flex-wrap: wrap; /* Bryter rad på mobil */
+            justify-content: center; /* Centrerar kort */
+            gap: 20px; /* Mellanrum */
+            padding: 40px 20px; /* Luft runt */
+        }
+
+        /* Verktygskort */
+        .card {
+            background-color: #111827; /* Mörkare kort */
+            padding: 25px; /* Luft inuti kort */
+            width: 280px; /* Bredd */
+            border-radius: 16px; /* Rundade hörn */
+            box-shadow: 0 0 10px rgba(0,0,0,0.3); /* Skugga */
+        }
+
+        /* Rubriker i kort */
+        .card h2 {
+            color: #facc15; /* Gul rubrik */
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Huvudsektion -->
+    <section class="hero">
+
+        <!-- Stor rubrik -->
+        <h1>Formkraft</h1>
+
+        <!-- Kort beskrivning -->
+        <p class="subtitle">
+            Smarta och praktiska HTML-verktyg för småföretagare,
+            kreatörer och vardagsanvändare.
+        </p>
+
+        <!-- Knappar -->
+        <div class="buttons">
+
+            <!-- GitHub-knapp -->
+            <a class="btn" href="https://github.com/" target="_blank">
+                GitHub
+            </a>
+
+            <!-- Kontaktknapp -->
+            <a class="btn" href="mailto:kontakt@formkraft.se">
+                Kontakta oss
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Verktygssektion -->
+    <section class="tools">
+
+        <!-- Kort 1 -->
+        <div class="card">
+            <h2>Skyltgenerator</h2>
+            <p>
+                Skapa snygga skyltar snabbt och enkelt direkt i webbläsaren.
+            </p>
+        </div>
+
+        <!-- Kort 2 -->
+        <div class="card">
+            <h2>QR-Visitkort</h2>
+            <p>
+                Digitala visitkort med QR-kod för företag och mässor.
+            </p>
+        </div>
+
+        <!-- Kort 3 -->
+        <div class="card">
+            <h2>Kvittomall</h2>
+            <p>
+                Enkla kvitton för marknader, småföretag och försäljning.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        © 2026 Formkraft • Enkla idéer. Praktiska lösningar.
+    </footer>
+
+</body>
+</html>

@@ -4,3 +4,447 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Enkel budgetplanerare</title>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --gold: #eab308;
+      --green: #22c55e;
+      --red: #ef4444;
+      --border: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: var(--text);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      color: var(--gold);
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #020617;
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    input:focus {
+      outline: 2px solid var(--gold);
+    }
+
+    .summary {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .summary-box {
+      background: #020617;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .summary-box strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 24px;
+    }
+
+    .positive {
+      color: var(--green);
+    }
+
+    .negative {
+      color: var(--red);
+    }
+
+    .buttons {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .primary {
+      background: var(--gold);
+      color: #111827;
+    }
+
+    .secondary {
+      background: #334155;
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+
+      .card,
+      .summary-box {
+        box-shadow: none;
+        border: 1px solid #999;
+      }
+
+      .buttons {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <header>
+      <h1>Enkel budgetplanerare</h1>
+
+      <p>
+        Fyll i dina inkomster och utgifter.
+        Summan räknas ut automatiskt och sparas i webbläsaren.
+      </p>
+    </header>
+
+    <div class="grid">
+
+      <section class="card">
+
+        <h2>Inkomster</h2>
+
+        <label for="salary">Lön / pension</label>
+        <input id="salary" type="number" placeholder="0">
+
+        <label for="extraIncome">Extra inkomst</label>
+        <input id="extraIncome" type="number" placeholder="0">
+
+        <label for="otherIncome">Övriga inkomster</label>
+        <input id="otherIncome" type="number" placeholder="0">
+
+      </section>
+
+      <section class="card">
+
+        <h2>Fasta utgifter</h2>
+
+        <label for="rent">Hyra / boende</label>
+        <input id="rent" type="number" placeholder="0">
+
+        <label for="electricity">El / värme</label>
+        <input id="electricity" type="number" placeholder="0">
+
+        <label for="insurance">Försäkringar</label>
+        <input id="insurance" type="number" placeholder="0">
+
+        <label for="subscriptions">Abonnemang</label>
+        <input id="subscriptions" type="number" placeholder="0">
+
+      </section>
+
+      <section class="card">
+
+        <h2>Rörliga utgifter</h2>
+
+        <label for="food">Mat</label>
+        <input id="food" type="number" placeholder="0">
+
+        <label for="transport">Transport</label>
+        <input id="transport" type="number" placeholder="0">
+
+        <label for="shopping">Kläder / shopping</label>
+        <input id="shopping" type="number" placeholder="0">
+
+        <label for="fun">Nöjen</label>
+        <input id="fun" type="number" placeholder="0">
+
+      </section>
+
+      <section class="card">
+
+        <h2>Sparande & övrigt</h2>
+
+        <label for="saving">Sparande</label>
+        <input id="saving" type="number" placeholder="0">
+
+        <label for="debt">Lån / skulder</label>
+        <input id="debt" type="number" placeholder="0">
+
+        <label for="otherCosts">Övriga kostnader</label>
+        <input id="otherCosts" type="number" placeholder="0">
+
+      </section>
+
+    </div>
+
+    <section class="summary">
+
+      <div class="summary-box">
+        Inkomster totalt
+        <strong id="incomeTotal">0 kr</strong>
+      </div>
+
+      <div class="summary-box">
+        Utgifter totalt
+        <strong id="costTotal">0 kr</strong>
+      </div>
+
+      <div class="summary-box">
+        Kvar efter budget
+        <strong id="balanceTotal">0 kr</strong>
+      </div>
+
+    </section>
+
+    <div class="buttons">
+
+      <button class="primary" onclick="saveBudget()">
+        Spara budget
+      </button>
+
+      <button class="secondary" onclick="window.print()">
+        Skriv ut
+      </button>
+
+      <button class="secondary" onclick="clearBudget()">
+        Rensa allt
+      </button>
+
+    </div>
+
+    <footer>
+      Gratis HTML-mall · Fungerar lokalt och online ·
+      Kan anpassas för privatpersoner och småföretag
+    </footer>
+
+  </div>
+
+  <script>
+
+    const fields = [
+      'salary',
+      'extraIncome',
+      'otherIncome',
+      'rent',
+      'electricity',
+      'insurance',
+      'subscriptions',
+      'food',
+      'transport',
+      'shopping',
+      'fun',
+      'saving',
+      'debt',
+      'otherCosts'
+    ];
+
+    function getValue(id) {
+
+      return Number(
+        document.getElementById(id).value
+      ) || 0;
+
+    }
+
+    function formatCurrency(value) {
+
+      return value.toLocaleString('sv-SE') + ' kr';
+
+    }
+
+    function calculateBudget() {
+
+      const income =
+        getValue('salary') +
+        getValue('extraIncome') +
+        getValue('otherIncome');
+
+      const costs =
+        getValue('rent') +
+        getValue('electricity') +
+        getValue('insurance') +
+        getValue('subscriptions') +
+        getValue('food') +
+        getValue('transport') +
+        getValue('shopping') +
+        getValue('fun') +
+        getValue('saving') +
+        getValue('debt') +
+        getValue('otherCosts');
+
+      const balance = income - costs;
+
+      document.getElementById('incomeTotal').textContent =
+        formatCurrency(income);
+
+      document.getElementById('costTotal').textContent =
+        formatCurrency(costs);
+
+      document.getElementById('balanceTotal').textContent =
+        formatCurrency(balance);
+
+      document.getElementById('balanceTotal').className =
+        balance >= 0 ? 'positive' : 'negative';
+
+    }
+
+    function saveBudget() {
+
+      const data = {};
+
+      fields.forEach(function(field) {
+
+        data[field] =
+          document.getElementById(field).value;
+
+      });
+
+      localStorage.setItem(
+        'budgetplanerareData',
+        JSON.stringify(data)
+      );
+
+      alert(
+        'Budgeten är sparad i den här webbläsaren.'
+      );
+
+    }
+
+    function loadBudget() {
+
+      const savedData =
+        localStorage.getItem('budgetplanerareData');
+
+      if (!savedData) {
+
+        calculateBudget();
+        return;
+
+      }
+
+      const data = JSON.parse(savedData);
+
+      fields.forEach(function(field) {
+
+        document.getElementById(field).value =
+          data[field] || '';
+
+      });
+
+      calculateBudget();
+
+    }
+
+    function clearBudget() {
+
+      if (
+        !confirm(
+          'Vill du verkligen rensa hela budgeten?'
+        )
+      ) {
+        return;
+      }
+
+      fields.forEach(function(field) {
+
+        document.getElementById(field).value = '';
+
+      });
+
+      localStorage.removeItem(
+        'budgetplanerareData'
+      );
+
+      calculateBudget();
+
+    }
+
+    fields.forEach(function(field) {
+
+      document
+        .getElementById(field)
+        .addEventListener(
+          'input',
+          calculateBudget
+        );
+
+    });
+
+    loadBudget();
+
+  </script>
+
+</body>
+</html>
